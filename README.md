@@ -1,5 +1,3 @@
-```
-Work-in-progress packet analyzer written in Go...
-```
+work-in-progress app
 
 

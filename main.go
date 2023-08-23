@@ -6,7 +6,6 @@ import (
 	"os"
 )
 
-// Packet is a struct to hold the JSON data
 type Packet struct {
 	Source struct {
 		Layers struct {
@@ -26,10 +25,8 @@ func ip_address(file string) {
 	fmt.Println("Successfully Opened packets.json")
 	defer jsonFile.Close()
 
-	// create a variable to store the decoded JSON
 	var packets []Packet
 
-	// decode JSON into packets variable
 	decoder := json.NewDecoder(jsonFile)
 	err = decoder.Decode(&packets)
 	if err != nil {
@@ -37,15 +34,12 @@ func ip_address(file string) {
 		return
 	}
 
-	// Create a map to store unique IP addresses
 	uniqueIPs := make(map[string]bool)
 
-	// Loop through packets and add the IP addresses to the map
 	for i := 0; i < len(packets); i++ {
 		uniqueIPs[packets[i].Source.Layers.IP.Src] = true
 	}
 
-	// Print out the unique IP addresses
 	fmt.Println("Unique IP addresses:")
 
 	for ip := range uniqueIPs {
